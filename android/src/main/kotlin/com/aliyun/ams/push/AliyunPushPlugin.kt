@@ -104,12 +104,14 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
                     jumpToAndroidNotificationSettings(call)
                 }
             }
+
             "setPluginLogEnabled" -> {
                 val enabled = call.argument<Boolean>("enabled")
                 if (enabled != null) {
                     AliyunPushLog.setLogEnabled(enabled)
                 }
             }
+
             else -> result.notImplemented()
         }
     }
@@ -191,7 +193,7 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
 
         try {
             result.success(map)
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             AliyunPushLog.e(TAG, Log.getStackTraceString(e))
         }
     }
@@ -213,7 +215,7 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
         val level = call.argument<Int>("level")
         val map = HashMap<String, String>()
 
-        if (level!=null) {
+        if (level != null) {
             val pushService = PushServiceFactory.getCloudPushService()
             pushService.setLogLevel(level)
             map[CODE_KEY] = CODE_SUCCESS
@@ -655,7 +657,8 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
             val vibration = call.argument<Boolean?>("vibration")
             val vibrationPattern = call.argument<List<Long>?>("vibrationPattern")
 
-            val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val importanceValue = importance ?: NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(id, name, importanceValue).apply {
                 description = desc
@@ -707,7 +710,8 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
             }
         } else {
             map[CODE_KEY] = CODE_NOT_SUPPORT
-            map[ERROR_MSG_KEY] = "Android version is below Android O which is not support create channel"
+            map[ERROR_MSG_KEY] =
+                "Android version is below Android O which is not support create channel"
 
             try {
                 result.success(map)
@@ -725,7 +729,8 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
             val name = call.argument<String?>("name")
             val desc = call.argument<String?>("desc")
 
-            val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val group = NotificationChannelGroup(id, name).apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     description = desc
@@ -741,7 +746,8 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
             }
         } else {
             map[CODE_KEY] = CODE_NOT_SUPPORT
-            map[ERROR_MSG_KEY] = "Android version is below Android O which is not support create group"
+            map[ERROR_MSG_KEY] =
+                "Android version is below Android O which is not support create group"
 
             try {
                 result.success(map)
@@ -754,7 +760,8 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
     // 检查通知状态
     private fun isNotificationEnabled(call: MethodCall, result: Result) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val manager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val manager =
+                mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             if (!manager.areNotificationsEnabled()) {
                 result.success(false)
                 return
@@ -792,7 +799,7 @@ class AliyunPushPlugin : FlutterPlugin, MethodCallHandler {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun jumpToAndroidNotificationSettings(call: MethodCall) {
         val id: String? = call.argument<String?>("id")
-        val intent = if (id!=null) {
+        val intent = if (id != null) {
             Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
                 putExtra(Settings.EXTRA_APP_PACKAGE, mContext.packageName)
                 putExtra(Settings.EXTRA_CHANNEL_ID, id)
