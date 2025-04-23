@@ -95,7 +95,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   @override
   Future<Map<dynamic, dynamic>> bindAccount(String account) async {
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('bindAccount', {'account': account});
+    await methodChannel.invokeMethod('bindAccount', {'account': account});
     return result;
   }
 
@@ -109,7 +109,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('bindPhoneNumber', {'phone': phone});
+    await methodChannel.invokeMethod('bindPhoneNumber', {'phone': phone});
     return result;
   }
 
@@ -131,7 +131,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('clearNotifications');
+    await methodChannel.invokeMethod('clearNotifications');
     return result;
   }
 
@@ -145,28 +145,27 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('closePushLog');
+    await methodChannel.invokeMethod('closePushLog');
     return result;
   }
 
   @override
-  Future<Map<dynamic, dynamic>> createAndroidChannel(
-    String id,
-    String name,
-    int importance,
-    String description, {
-    String? groupId,
-    bool? allowBubbles,
-    bool? light,
-    int? lightColor,
-    bool? showBadge,
-    String? soundPath,
-    int? soundUsage,
-    int? soundContentType,
-    int? soundFlag,
-    bool? vibration,
-    List<int>? vibrationPatterns,
-  }) async {
+  Future<Map<dynamic, dynamic>> createAndroidChannel(String id,
+      String name,
+      int importance,
+      String description, {
+        String? groupId,
+        bool? allowBubbles,
+        bool? light,
+        int? lightColor,
+        bool? showBadge,
+        String? soundPath,
+        int? soundUsage,
+        int? soundContentType,
+        int? soundFlag,
+        bool? vibration,
+        List<int>? vibrationPatterns,
+      }) async {
     if (!Platform.isAndroid) {
       return {
         'code': kAliyunPushOnlyAndroid,
@@ -175,7 +174,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('createChannel', {
+    await methodChannel.invokeMethod('createChannel', {
       'id': id,
       'name': name,
       'importance': importance,
@@ -196,8 +195,8 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   }
 
   @override
-  Future<Map<dynamic, dynamic>> createAndroidChannelGroup(
-      String id, String name, String desc) async {
+  Future<Map<dynamic, dynamic>> createAndroidChannelGroup(String id,
+      String name, String desc) async {
     if (!Platform.isAndroid) {
       return {
         'code': kAliyunPushOnlyAndroid,
@@ -217,7 +216,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     var apnsDeviceToken =
-        await methodChannel.invokeMethod('getApnsDeviceToken');
+    await methodChannel.invokeMethod('getApnsDeviceToken');
     return "$apnsDeviceToken";
   }
 
@@ -230,7 +229,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   @override
   Future<Map<dynamic, dynamic>> initAndroidThirdPush() async {
     Map<dynamic, dynamic> initResult =
-        await methodChannel.invokeMethod('initThirdPush');
+    await methodChannel.invokeMethod('initThirdPush');
     return initResult;
   }
 
@@ -241,7 +240,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   }) async {
     if (Platform.isIOS) {
       Map<dynamic, dynamic> initResult =
-          await methodChannel.invokeMethod('initPushSdk', {
+      await methodChannel.invokeMethod('initPushSdk', {
         'appKey': appKey,
         'appSecret': appSecret,
       });
@@ -249,7 +248,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
       return initResult;
     } else {
       Map<dynamic, dynamic> initResult =
-          await methodChannel.invokeMethod('initPush');
+      await methodChannel.invokeMethod('initPush');
       return initResult;
     }
   }
@@ -261,7 +260,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     bool enabled =
-        await methodChannel.invokeMethod('isNotificationEnabled', {'id': id});
+    await methodChannel.invokeMethod('isNotificationEnabled', {'id': id});
 
     return enabled;
   }
@@ -277,6 +276,13 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   }
 
   @override
+  Future<bool> isNotificationEnabled() async {
+    var opened = await methodChannel.invokeMethod('isNotificationEnabled');
+    return opened;
+  }
+
+
+  @override
   void jumpToAndroidNotificationSettings({String? id}) {
     if (!Platform.isAndroid) {
       return;
@@ -288,7 +294,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   @override
   Future<Map<dynamic, dynamic>> listAlias() async {
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('listAlias');
+    await methodChannel.invokeMethod('listAlias');
     return result;
   }
 
@@ -296,14 +302,14 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   Future<Map<dynamic, dynamic>> listTags(
       {int target = kAliyunTargetDevice}) async {
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('listTags', {'target': target});
+    await methodChannel.invokeMethod('listTags', {'target': target});
     return result;
   }
 
   @override
   Future<Map<dynamic, dynamic>> removeAlias(String alias) async {
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('removeAlias', {'alias': alias});
+    await methodChannel.invokeMethod('removeAlias', {'alias': alias});
     return result;
   }
 
@@ -317,7 +323,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('setLogLevel', {'level': level});
+    await methodChannel.invokeMethod('setLogLevel', {'level': level});
     return result;
   }
 
@@ -331,7 +337,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('setBadgeNum', {'badgeNum': num});
+    await methodChannel.invokeMethod('setBadgeNum', {'badgeNum': num});
     return result;
   }
 
@@ -378,7 +384,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('syncBadgeNum', {'badgeNum': num});
+    await methodChannel.invokeMethod('syncBadgeNum', {'badgeNum': num});
     return result;
   }
 
@@ -393,7 +399,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('turnOnDebug');
+    await methodChannel.invokeMethod('turnOnDebug');
     return result;
   }
 
@@ -407,14 +413,14 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('setIOSLogLevel', {'level': level});
+    await methodChannel.invokeMethod('setIOSLogLevel', {'level': level});
     return result;
   }
 
   @override
   Future<Map<dynamic, dynamic>> unbindAccount() async {
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('unbindAccount');
+    await methodChannel.invokeMethod('unbindAccount');
     return result;
   }
 
@@ -428,7 +434,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('unbindPhoneNumber');
+    await methodChannel.invokeMethod('unbindPhoneNumber');
     return result;
   }
 
@@ -443,7 +449,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
   @override
   Future<Map<dynamic, dynamic>> addAlias(String alias) async {
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('addAlias', {'alias': alias});
+    await methodChannel.invokeMethod('addAlias', {'alias': alias});
     return result;
   }
 
@@ -457,7 +463,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('checkPushChannelStatus');
+    await methodChannel.invokeMethod('checkPushChannelStatus');
     return result;
   }
 
@@ -471,7 +477,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('turnOnPushChannel');
+    await methodChannel.invokeMethod('turnOnPushChannel');
     return result;
   }
 
@@ -485,7 +491,7 @@ class MethodChannelAliyunPushFlutter extends AliyunPushFlutterPlatform {
     }
 
     Map<dynamic, dynamic> result =
-        await methodChannel.invokeMethod('turnOffPushChannel');
+    await methodChannel.invokeMethod('turnOffPushChannel');
     return result;
   }
 }

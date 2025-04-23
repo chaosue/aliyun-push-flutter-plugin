@@ -1,4 +1,5 @@
 import 'aliyun_push_flutter_platform_interface.dart';
+import 'dart:io';
 
 /// 失败
 const kAliyunPushFailedCode = "10002";
@@ -172,6 +173,14 @@ class AliyunPushFlutter {
   /// iOS 通知通道是否已打开
   Future<bool> isIOSChannelOpened() async {
     return AliyunPushFlutterPlatform.instance.isIOSChannelOpened();
+  }
+
+  /// 通知是否已打开
+  Future<bool> isNotificationEnabled({String? id}) async {
+    if(Platform.isAndroid){
+      return isAndroidNotificationEnabled(id: id);
+    }
+    return AliyunPushFlutterPlatform.instance.isNotificationEnabled();
   }
 
   /// 跳转到通知设置页面

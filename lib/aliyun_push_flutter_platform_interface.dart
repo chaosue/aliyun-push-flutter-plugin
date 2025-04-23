@@ -214,6 +214,11 @@ abstract class AliyunPushFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('isIOSChannelOpened() has not been implemented.');
   }
 
+  /// 通知是否已打开
+  Future<bool> isNotificationEnabled() async {
+    throw UnimplementedError('isNotificationEnabled() has not been implemented.');
+  }
+
   /// 设置是否开启插件日志
   void setPluginLogEnabled(bool enabled) {
     throw UnimplementedError('setPluginLogEnabled() has not been implemented.');
