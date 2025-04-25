@@ -116,7 +116,7 @@ object AliyunThirdPushUtils {
     }
 
     private fun getHuaweiAppId(context: Context) =
-        getAppMetaData(context, "com.huawei.hms.client.appid", isInt = true)
+        getAppMetaData(context, "com.huawei.hms.client.appid")
 
     // Honor
     fun registerHonorPush(application: Application) {
