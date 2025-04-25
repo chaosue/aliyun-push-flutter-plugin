@@ -104,6 +104,8 @@ public class AliyunPushPlugin: NSObject, FlutterPlugin, UNUserNotificationCenter
             isChannelOpened(result: result)
         case "setPluginLogEnabled":
             setPluginLogEnabled(call)
+        case "isNotificationEnabled":
+            isNotificationEnabled(result: result)
         default:
             result(FlutterMethodNotImplemented)
         }
@@ -492,6 +494,16 @@ public class AliyunPushPlugin: NSObject, FlutterPlugin, UNUserNotificationCenter
     /// 推送消息通道状态
     private func isChannelOpened(result: @escaping FlutterResult) {
         result(CloudPushSDK.isChannelOpened())
+    }
+    
+    /// 推送消息通知是否打开
+    private func isNotificationEnabled(result: @escaping FlutterResult) {
+        self.notificationCenter?.getNotificationSettings(completionHandler: {permission in switch permission.authorizationStatus{
+        case .authorized:
+            result(true)
+        default:
+            result(false)
+        }})
     }
 
     public func userNotificationCenter(
