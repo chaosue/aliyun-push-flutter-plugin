@@ -29,7 +29,6 @@ object AliyunThirdPushUtils {
             val info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
 
             if (info.metaData.containsKey(key)) {
-                info.metaData.getString(key) ?: info.metaData.getInt(key, -1).takeIf { it != -1 }?.toString()
                 if (isInt) {
                     info.metaData.getInt(key, -1).takeIf { it != -1 }?.toString()
                 } else info.metaData.getString(key) ?: info.metaData.getInt(key, -1)
