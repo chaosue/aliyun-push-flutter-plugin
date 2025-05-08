@@ -61,53 +61,6 @@ public class AliyunPushPlugin: NSObject, FlutterPlugin, UNUserNotificationCenter
     }
 
     // MARK: - Method Handler
-
-    public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        switch call.method {
-        case "initPushSdk":
-            initPushSdk(call, result: result)
-        case "getDeviceId":
-            getDeviceId(result: result)
-        case "turnOnDebug":
-            turnOnDebug(result: result)
-        case "setIOSLogLevel":
-            setLogLevel(call, result: result)
-        case "bindAccount":
-            bindAccount(call, result: result)
-        case "unbindAccount":
-            unbindAccount(result: result)
-        case "addAlias":
-            addAlias(call, result: result)
-        case "removeAlias":
-            removeAlias(call, result: result)
-        case "listAlias":
-            listAlias(result: result)
-        case "bindTag":
-            bindTag(call, result: result)
-        case "unbindTag":
-            unbindTag(call, result: result)
-        case "listTags":
-            listTags(call, result: result)
-        case "showNoticeWhenForeground":
-            showNoticeWhenForeground(call, result: result)
-        case "setBadgeNum":
-            setBadgeNum(call, result: result)
-        case "syncBadgeNum":
-            if let arguments = call.arguments as? [String: Any],
-                let badgeNum = arguments["badgeNum"] as? Int
-            {
-                syncBadgeNum(badgeNum, result: result)
-            }
-        case "getApnsDeviceToken":
-            getApnsDeviceToken(result: result)
-        case "isChannelOpened":
-            isChannelOpened(result: result)
-        case "setPluginLogEnabled":
-            setPluginLogEnabled(call)
-        default:
-            result(FlutterMethodNotImplemented)
-        }
-    }
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "initPushSdk":
