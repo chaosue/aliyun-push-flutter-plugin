@@ -5,7 +5,7 @@
 Pod::Spec.new do |s|
   s.name             = 'aliyun_push_flutter'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.summary          = 'aliyun push service sdk.'
   s.description      = <<-DESC
 A new Flutter plugin project.
                        DESC
