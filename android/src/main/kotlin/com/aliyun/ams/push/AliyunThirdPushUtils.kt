@@ -12,7 +12,7 @@ import com.alibaba.sdk.android.push.register.OppoRegister
 import com.alibaba.sdk.android.push.register.VivoRegister
 
 object AliyunThirdPushUtils {
-    private fun getAppMetaDataWithId(context: Context, key: String): String? {
+    fun getAppMetaDataWithId(context: Context, key: String): String? {
         return getAppMetaData(context, key)?.let { value ->
             when {
                 value.startsWith("id=") -> value.substring(3)
@@ -22,7 +22,7 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getAppMetaData(context: Context, key: String, isInt: Boolean = false): String? {
+    fun getAppMetaData(context: Context, key: String, isInt: Boolean = false): String? {
         return try {
             val packageManager = context.packageManager
             val packageName = context.packageName
@@ -52,10 +52,11 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getMeizuPushId(context: Context) =
-        getAppMetaData(context, "com.meizu.push.id", isInt = true)
+    fun getMeizuPushId(context: Context): String? {
+        return getAppMetaData(context, "com.meizu.push.id", isInt = true)
+    }
 
-    private fun getMeizuPushKey(context: Context) =
+    fun getMeizuPushKey(context: Context) =
         getAppMetaDataWithId(context, "com.meizu.push.key")
 
     // Oppo
@@ -68,10 +69,10 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getOppoPushKey(context: Context) =
+    fun getOppoPushKey(context: Context) =
         getAppMetaDataWithId(context, "com.oppo.push.key")
 
-    private fun getOppoPushSecret(context: Context) =
+    fun getOppoPushSecret(context: Context) =
         getAppMetaDataWithId(context, "com.oppo.push.secret")
 
     // Xiaomi
@@ -84,10 +85,10 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getXiaomiId(context: Context) =
+    fun getXiaomiId(context: Context) =
         getAppMetaData(context, "com.xiaomi.push.id")
 
-    private fun getXiaomiKey(context: Context) =
+    fun getXiaomiKey(context: Context) =
         getAppMetaData(context, "com.xiaomi.push.key")
 
     // Vivo
@@ -100,10 +101,10 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getVivoApiKey(context: Context) =
+    fun getVivoApiKey(context: Context) =
         getAppMetaDataWithId(context, "com.vivo.push.api_key")
 
-    private fun getVivoAppId(context: Context) =
+    fun getVivoAppId(context: Context) =
         getAppMetaData(context, "com.vivo.push.app_id", isInt = true)
 
     // Huawei
@@ -115,7 +116,7 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getHuaweiAppId(context: Context) =
+    fun getHuaweiAppId(context: Context) =
         getAppMetaData(context, "com.huawei.hms.client.appid")
 
     // Honor
@@ -127,7 +128,7 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getHonorAppId(context: Context) =
+    fun getHonorAppId(context: Context) =
         getAppMetaData(context, "com.hihonor.push.app_id", isInt = true)
 
     // FCM
@@ -142,15 +143,15 @@ object AliyunThirdPushUtils {
         }
     }
 
-    private fun getGCMSendId(context: Context) =
+    fun getGCMSendId(context: Context) =
         getAppMetaDataWithId(context, "com.gcm.push.sendid")
 
-    private fun getGCMApplicationId(context: Context) =
+    fun getGCMApplicationId(context: Context) =
         getAppMetaDataWithId(context, "com.gcm.push.applicationid")
 
-    private fun getGCMProjectId(context: Context) =
+    fun getGCMProjectId(context: Context) =
         getAppMetaDataWithId(context, "com.gcm.push.projectid")
 
-    private fun getGCMApiKey(context: Context) =
+    fun getGCMApiKey(context: Context) =
         getAppMetaDataWithId(context, "com.gcm.push.api.key")
 }
