@@ -137,7 +137,7 @@ object AliyunThirdPushUtils {
         val projectId = getGCMProjectId(application)
         val apiKey = getGCMApiKey(application)
 
-        if (sendId != null && applicationId != null && projectId != null && apiKey != null) {
+        if (!sendId.isNullOrBlank() && !applicationId.isNullOrBlank() && !projectId.isNullOrBlank() && !apiKey.isNullOrBlank()) {
             GcmRegister.register(application, sendId, applicationId, projectId, apiKey)
         }
     }
